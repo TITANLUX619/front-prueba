@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios'; 
 
 class App extends Component {
@@ -12,7 +11,7 @@ class App extends Component {
 }
   
   componentDidMount() {
-    axios.get('https://guadaltech-fulllstack.herokuapp.com/api/becarios/')
+    axios.get('https://guadaltech-fullstack.herokuapp.com/api/becarios')
         .then(res => {
             this.setState({ resources: res.data });
             console.log(this.state.resources);
@@ -34,17 +33,17 @@ class App extends Component {
                       <table className="table table-hover table-dark">
                         <thead>
                           <tr>
-                            <th>DNI</th>
-                              <th>First Name</th>
-                                <th>Last Name</th>
+                            <th>ID</th>
+                            <th>Mail</th>
+                            <th>Name</th>
                           </tr>
                         </thead>
                         <tbody>
                           {this.state.resources.map(resource =>
                             <tr>
-                              <td><Link to={`/show/${resource.dni}`}>{resource.dni}</Link></td>
-                              <td>{resource.firstName}</td>
-                              <td>{resource.lastName}</td>
+                              <td>{resource.id}</td>
+                              <td>{resource.email}</td>
+                              <td>{resource.name}</td>
                             </tr>
                           )}
                         </tbody>
